@@ -33,9 +33,29 @@ function getURLDate() {
   }
 }
 
+function formatDateTime(dateString) {
+  const date = new Date(dateString + "T00:00:00");
+
+  const options = {
+    weekday: "long", // e.g., "Saturday"
+    year: "numeric", // e.g., "1996"
+    month: "long", // e.g., "July"
+    day: "numeric", // e.g., "13"
+  };
+
+  const longFormDate = date.toLocaleDateString(undefined, options);
+  return longFormDate;
+}
+
 function updatePageDetails() {
   //Set Background Color
   document.body.style.backgroundColor = colorObject.colorHex;
+
+  //Set Main Header text
+  const main_header = document.getElementById("main-header");
+  main_header.innerText = formatDateTime(colorObject.dateString);
+
+  colorObject.dateString;
 
   //Set Color-Hex text
   const color_hex = document.getElementById("color-hex");
