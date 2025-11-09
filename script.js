@@ -1,18 +1,21 @@
-function stringToColor(str) {
-  //TODO Create more complex hash
+function stringToColor(dateStr) {
+  //Create hash from dateStr value
   let hash = 0;
-  str = str.replaceAll("-", "");
-  const strArr = str.split("");
-  strArr.forEach((c) => {
-    hash = Number.parseInt(c) + ((hash << 5) - hash);
-    console.log(c);
-  });
-  console.log("Hash:", hash);
-  return hash;
+  for (let i = 0; i < dateStr.length; i++) {
+    hash = dateStr.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  //Calculate color value based on hash value
+  let color = "";
+  for (let i = 0; i < 3; i++) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += value.toString(16).padStart(2, "0");
+  }
+  return "#" + color.toUpperCase();
 }
 
 function getURLDate() {
-  //Try to get date from window.location.hash
+  //Try to retrieve date from window.location.hash
   let urlDate = "";
 
   try {
