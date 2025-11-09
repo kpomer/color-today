@@ -1,7 +1,7 @@
 const colorObject = { dateString: undefined, colorHex: undefined };
 
 function dateStringToColor(dateStr) {
-  //TODO Make hash more unique - to be completely from one day to the next
+  //TODO Make hash more unique (ex. SHA256) - to be completely different from one day to the next
 
   //Create hash from dateStr value
   let hash = 0;
@@ -41,6 +41,8 @@ function updatePageDetails() {
   const color_hex = document.getElementById("color-hex");
   color_hex.innerText = colorObject.colorHex;
 
+  //TODO Set other details like displaying the complementary palette and/or color fun facts
+
   //   Set URL window.location.hash based on colorObject.dateString
   if (window.location.hash !== "#" + colorObject.dateString) {
     window.history.pushState(null, null, "#" + colorObject.dateString);
@@ -53,6 +55,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updatePageDetails();
 
-  //TODO   Generate and display the complementary palette and/or color fun facts
   //TODO   Add handling for archived days
 });
