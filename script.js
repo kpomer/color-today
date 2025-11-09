@@ -1,4 +1,8 @@
-function stringToColor(dateStr) {
+const colorObject = { dateString: undefined, colorHex: undefined };
+
+function dateStringToColor(dateStr) {
+  //TODO Make hash more unique - to be completely from one day to the next
+
   //Create hash from dateStr value
   let hash = 0;
   for (let i = 0; i < dateStr.length; i++) {
@@ -17,7 +21,6 @@ function stringToColor(dateStr) {
 function getURLDate() {
   //Try to retrieve date from window.location.hash
   let urlDate = "";
-
   try {
     urlDate = new Date(window.location.hash.substring(1))
       .toISOString()
@@ -30,24 +33,26 @@ function getURLDate() {
   }
 }
 
+function updatePageDetails() {
+  //Set Background Color
+  document.body.style.backgroundColor = colorObject.colorHex;
+
+  //Set Color-Hex text
+  const color_hex = document.getElementById("color-hex");
+  color_hex.innerText = colorObject.colorHex;
+
+  //   Set URL window.location.hash based on colorObject.dateString
+  if (window.location.hash !== "#" + colorObject.dateString) {
+    window.history.pushState(null, null, "#" + colorObject.dateString);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  const targetDateString = getURLDate();
-  console.log("Target Date", targetDateString);
+  colorObject.dateString = getURLDate();
+  colorObject.colorHex = dateStringToColor(colorObject.dateString);
 
-  const primaryHex = stringToColor(targetDateString);
-  console.log("Primary Hex", primaryHex);
+  updatePageDetails();
 
-  //   // 3. Update the page background and display the hex code
-  //   updatePageColor(primaryHex);
-
-  //   // 4. (Advanced step) Generate the complementary palette
-  //   const complementaryPalette = generatePalette(primaryHex);
-
-  //   // 5. Display the full color palette and other info
-  //   displayPaletteAndInfo(targetDateString, primaryHex, complementaryPalette);
-
-  //   // Optional: Update the URL hash for history/sharing
-  //   if (window.location.hash !== "#" + targetDateString) {
-  //     window.history.pushState(null, null, "#" + targetDateString);
-  //   }
+  //TODO   Generate and display the complementary palette and/or color fun facts
+  //TODO   Add handling for archived days
 });
