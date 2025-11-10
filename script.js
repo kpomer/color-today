@@ -34,6 +34,7 @@ function getURLDate() {
 }
 
 function navigateToDate(newDate) {
+  // Change webpage based on newDate parameter
   newWindowHash = newDate.toISOString().slice(0, 10);
   window.location.href = window.location.pathname + "#" + newWindowHash;
   window.location.reload(true);
@@ -60,8 +61,6 @@ function updatePageDetails() {
   //Set Main Header text
   const main_header = document.getElementById("main-header");
   main_header.innerText = formatDateTime(colorObject.dateString);
-
-  colorObject.dateString;
 
   //Set Color-Hex text
   const color_hex = document.getElementById("color-hex");
