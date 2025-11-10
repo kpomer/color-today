@@ -1,5 +1,7 @@
+// --- GLOBALS ---
 const colorObject = { dateString: undefined, colorHex: undefined };
 
+// --- CORE UTILITIES ---
 function dateStringToColor(dateStr) {
   //TODO Make hash more unique (ex. SHA256) - to be completely different from one day to the next
 
@@ -17,6 +19,22 @@ function dateStringToColor(dateStr) {
   }
   return "#" + color.toUpperCase();
 }
+
+function formatDateTime(dateString) {
+  const date = new Date(dateString + "T00:00:00");
+
+  const options = {
+    weekday: "long", // e.g., "Saturday"
+    year: "numeric", // e.g., "1996"
+    month: "long", // e.g., "July"
+    day: "numeric", // e.g., "13"
+  };
+
+  const longFormDate = date.toLocaleDateString(undefined, options);
+  return longFormDate;
+}
+
+// --- URL/Navigation Functions ---
 
 function getURLDate() {
   //Try to retrieve date from window.location.hash
@@ -40,19 +58,7 @@ function navigateToDate(newDate) {
   window.location.reload(true);
 }
 
-function formatDateTime(dateString) {
-  const date = new Date(dateString + "T00:00:00");
-
-  const options = {
-    weekday: "long", // e.g., "Saturday"
-    year: "numeric", // e.g., "1996"
-    month: "long", // e.g., "July"
-    day: "numeric", // e.g., "13"
-  };
-
-  const longFormDate = date.toLocaleDateString(undefined, options);
-  return longFormDate;
-}
+// --- DOM MANIPULATION & EVENT HANDLERS ---
 
 function updatePageDetails() {
   //Set Background Color
@@ -66,7 +72,18 @@ function updatePageDetails() {
   const color_hex = document.getElementById("color-hex");
   color_hex.innerText = colorObject.colorHex;
 
-  //Navigate to other dates (nav bar and form entry)
+  //TODO Set other details like displaying the complementary palette and/or color fun facts
+
+  //   Set URL window.location.hash based on colorObject.dateString
+  if (window.location.hash !== "#" + colorObject.dateString) {
+    window.history.pushState(null, null, "#" + colorObject.dateString);
+  }
+
+  addEventHandlers();
+}
+
+function addEventHandlers() {
+  // Navigate to other dates (Presets)
   const navBarButtons = {
     "nav-today": [0, "days"],
     "nav-yesterday": [-1, "days"],
@@ -87,6 +104,7 @@ function updatePageDetails() {
     });
   });
 
+  // Navigate to other dates (Date Input)
   const dateForm = document.getElementById("date-form");
   dateForm.addEventListener("change", (event) => {
     event.preventDefault();
@@ -96,16 +114,10 @@ function updatePageDetails() {
       navigateToDate(new Date(dateString));
     }
   });
-
-  //TODO Set other details like displaying the complementary palette and/or color fun facts
-
-  //   Set URL window.location.hash based on colorObject.dateString
-  if (window.location.hash !== "#" + colorObject.dateString) {
-    window.history.pushState(null, null, "#" + colorObject.dateString);
-  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Set Global Values
   colorObject.dateString = getURLDate();
   colorObject.colorHex = dateStringToColor(colorObject.dateString);
 
