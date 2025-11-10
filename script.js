@@ -2,22 +2,21 @@
 const colorObject = { dateString: undefined, colorHex: undefined };
 
 // --- CORE UTILITIES ---
-function dateStringToColor(dateStr) {
-  //TODO Make hash more unique (ex. SHA256) - to be completely different from one day to the next
 
-  //Create hash from dateStr value
-  let hash = 0;
-  for (let i = 0; i < dateStr.length; i++) {
-    hash = dateStr.charCodeAt(i) + ((hash << 5) - hash);
-  }
+async function dateStringToColor(dateString) {
+  //Use first 6 digits of SHA-256 Hash to get unique color hex code
+  const encoder = new TextEncoder();
+  const data = encoder.encode(dateString);
 
-  //Calculate color value based on hash value
-  let color = "";
-  for (let i = 0; i < 3; i++) {
-    const value = (hash >> (i * 8)) & 0xff;
-    color += value.toString(16).padStart(2, "0");
-  }
-  return "#" + color.toUpperCase();
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hexHash = hashArray
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+
+  // Truncate the full hash (64 characters) to the first 6 characters
+  return "#" + hexHash.substring(0, 6).toUpperCase();
 }
 
 function formatDateTime(dateString) {
@@ -116,10 +115,16 @@ function addEventHandlers() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   // Set Global Values
   colorObject.dateString = getURLDate();
-  colorObject.colorHex = dateStringToColor(colorObject.dateString);
+  try {
+    colorObject.colorHex = await dateStringToColor(colorObject.dateString);
+  } catch (e) {
+    console.error("Failed to generate color hash:", e);
+    // Fallback color if the crypto API fails for some reason
+    colorObject.colorHex = "#808080";
+  }
 
   updatePageDetails();
 });
