@@ -4,11 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Color Today</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1 id="main-header">Color Name</h1>
     <h2 id="color-hex">Color Hex</h2>
+    <div class="container mt-4">
+      <div
+        class="btn-toolbar justify-content-center mb-3"
+        role="toolbar"
+        aria-label="Toolbar with date presets"
+      >
+        <div class="btn-group mr-2" role="group" aria-label="Date preset group">
+          <button type="button" class="btn btn-secondary">Today</button>
+          <button type="button" class="btn btn-secondary">Yesterday</button>
+          <button type="button" class="btn btn-secondary">1 Year Ago</button>
+          <button type="button" class="btn btn-secondary">10 Years Ago</button>
+        </div>
+
+        <form class="form-inline">
+          <label for="specificDate" class="sr-only">Specific Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="specificDate"
+            placeholder="Select Date"
+          />
+        </form>
+      </div>
+    </div>
     <div id="palette-container"></div>
     <div id="ad-space-1"></div>
     <script src="script.js"></script>
