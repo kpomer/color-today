@@ -22,13 +22,21 @@
         aria-label="Toolbar with date presets"
       >
         <div class="btn-group mr-2" role="group" aria-label="Date preset group">
-          <button type="button" class="btn btn-secondary">Today</button>
-          <button type="button" class="btn btn-secondary">Yesterday</button>
-          <button type="button" class="btn btn-secondary">1 Year Ago</button>
-          <button type="button" class="btn btn-secondary">10 Years Ago</button>
+          <button type="button" class="btn btn-secondary" id="nav-today">
+            Today
+          </button>
+          <button type="button" class="btn btn-secondary" id="nav-yesterday">
+            Yesterday
+          </button>
+          <button type="button" class="btn btn-secondary" id="nav-1-year">
+            1 Year Ago
+          </button>
+          <button type="button" class="btn btn-secondary" id="nav-10-years">
+            10 Years Ago
+          </button>
         </div>
 
-        <form class="form-inline">
+        <form id="date-form" class="form-inline">
           <label for="specificDate" class="sr-only">Specific Date</label>
           <input
             type="date"
