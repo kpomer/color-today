@@ -234,7 +234,7 @@ function addEventHandlers() {
 
   // Navigate to other dates (Date Input)
   const dateInput = document.getElementById("specificDate");
-  dateInput.addEventListener("change", (event) => {
+  dateInput.addEventListener("blur", () => {
     const dateString = dateInput.value;
     if (dateString) {
       navigateToDate(new Date(dateString));
