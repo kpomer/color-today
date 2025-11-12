@@ -61,15 +61,18 @@ function navigateToDate(newDate) {
 
 function updatePageDetails() {
   //Set Background Color
-  document.body.style.backgroundColor = colorObject.colorHex;
+  //   document.body.style.backgroundColor = colorObject.colorHex;
 
   //Set Main Header text
   const main_header = document.getElementById("main-header");
   main_header.innerText = formatDateTime(colorObject.dateString);
 
   //Set Color-Hex text
-  const color_hex = document.getElementById("color-hex");
+  const color_hex = document.getElementById("main-hex");
   color_hex.innerText = colorObject.colorHex;
+
+  const mainColor = document.getElementById("main-color");
+  mainColor.style.backgroundColor = colorObject.colorHex;
 
   //TODO Set other details like displaying the complementary palette and/or color fun facts
 

@@ -13,42 +13,94 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1 id="main-header">Date</h1>
-    <h2 id="color-hex">Color Hex</h2>
-    <div class="container mt-4">
-      <div
-        class="btn-toolbar justify-content-center mb-3"
-        role="toolbar"
-        aria-label="Toolbar with date presets"
-      >
-        <div class="btn-group mr-2" role="group" aria-label="Date preset group">
-          <button type="button" class="btn btn-secondary" id="nav-today">
-            Today
-          </button>
-          <button type="button" class="btn btn-secondary" id="nav-yesterday">
-            Yesterday
-          </button>
-          <button type="button" class="btn btn-secondary" id="nav-1-year">
-            1 Year Ago
-          </button>
-          <button type="button" class="btn btn-secondary" id="nav-10-years">
-            10 Years Ago
-          </button>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h1 id="main-header">Date</h1>
         </div>
+        <div class="col">
+          <div
+            class="btn-toolbar justify-content-center mb-3"
+            role="toolbar"
+            aria-label="Toolbar with date presets"
+          >
+            <div
+              class="btn-group mr-2"
+              role="group"
+              aria-label="Date preset group"
+            >
+              <button type="button" class="btn btn-secondary" id="nav-today">
+                Today
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                id="nav-yesterday"
+              >
+                Yesterday
+              </button>
+              <button type="button" class="btn btn-secondary" id="nav-1-year">
+                1 Year Ago
+              </button>
+              <button type="button" class="btn btn-secondary" id="nav-10-years">
+                10 Years Ago
+              </button>
+            </div>
 
-        <form id="date-form" class="form-inline">
-          <label for="specificDate" class="sr-only">Specific Date</label>
-          <input
-            type="date"
-            class="form-control"
-            id="specificDate"
-            placeholder="Select Date"
-          />
-        </form>
+            <form id="date-form" class="form-inline">
+              <label for="specificDate" class="sr-only">Specific Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="specificDate"
+                placeholder="Select Date"
+              />
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-    <div id="palette-container"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card" style="width: 18rem">
+            <div class="pt-3 px-3 pb-0">
+              <div
+                id="main-color"
+                class="border border-dark"
+                style="height: 20rem"
+              ></div>
+            </div>
+
+            <div class="card-body text-center">
+              <h3 class="card-title mb-0" id="main-hex">#MainHex</h3>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex pt-3">
+          <div class="color-block" style="background-color: #c1ff72">
+            #c1ff72
+          </div>
+          <div class="color-block" style="background-color: #8eff72">
+            #8eff72
+          </div>
+          <div class="color-block" style="background-color: #ffff72">
+            #ffff72
+          </div>
+          <div class="color-block" style="background-color: #727bc1">
+            #727bc1
+          </div>
+          <div class="color-block" style="background-color: #3a6b29">
+            #3a6b29
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="ad-space-1"></div>
+    <!-- TODO: Google Ad-->
+    <footer></footer>
+    <!-- TODO: Footer-->
     <script src="script.js"></script>
   </body>
 </html>
