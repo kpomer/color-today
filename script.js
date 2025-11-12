@@ -107,10 +107,8 @@ function addEventHandlers() {
   });
 
   // Navigate to other dates (Date Input)
-  const dateForm = document.getElementById("date-form");
-  dateForm.addEventListener("change", (event) => {
-    event.preventDefault();
-    const dateInput = document.getElementById("specificDate");
+  const dateInput = document.getElementById("specificDate");
+  dateInput.addEventListener("change", (event) => {
     const dateString = dateInput.value;
     if (dateString) {
       navigateToDate(new Date(dateString));
