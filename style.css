@@ -1,3 +1,5 @@
+/* style.css */
+
 /* Palette Colors */
 .color-block {
   height: 20rem;
@@ -6,7 +8,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.color-block:hover {
+.palette-column:hover {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }

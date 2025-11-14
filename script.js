@@ -1,3 +1,5 @@
+// script.js
+
 // --- GLOBALS ---
 const colorObject = { dateString: undefined, colorHex: undefined };
 
@@ -195,8 +197,11 @@ function updatePageDetails() {
   const paletteColors = generatePalette(colorObject.colorHex);
   paletteColors.forEach((colorHex, index) => {
     const palette_element = document.getElementById(`palette-${index + 1}`);
+    const palette_text_element = document.getElementById(
+      `palette-text-${index + 1}`
+    );
     palette_element.style.backgroundColor = colorHex;
-    palette_element.innerText = colorHex;
+    palette_text_element.innerText = colorHex;
     palette_element.dataset.copy = colorHex;
   });
 
