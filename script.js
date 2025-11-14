@@ -252,6 +252,14 @@ function addEventHandlers() {
     if (copyData) {
       navigator.clipboard.writeText(copyData);
 
+      // Show toast notification
+      const copy_toast = document.getElementById("copyToast");
+      const toast = new bootstrap.Toast(copy_toast, {
+        autohide: true,
+        delay: 2000,
+      });
+      toast.show();
+
       // TODO Show "Copied!" feedback as Toast message or clipboard icon
       const element = e.target.closest("[data-copy]");
       element.style.opacity = "0.7";
