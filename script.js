@@ -175,8 +175,6 @@ function setFavicon(color) {
 // --- DOM MANIPULATION & EVENT HANDLERS ---
 
 function updatePageDetails() {
-  //Set Background Color
-  //   document.body.style.backgroundColor = colorObject.colorHex;
   //Set Favicon
   setFavicon(colorObject.colorHex);
 
@@ -205,7 +203,7 @@ function updatePageDetails() {
     palette_element.dataset.copy = colorHex;
   });
 
-  //TODO Set other details like displaying the complementary palette and/or color fun facts
+  //TODO Set other details like color fun facts or name
 
   //   Set URL window.location.hash based on colorObject.dateString
   if (window.location.hash !== "#" + colorObject.dateString) {
@@ -238,6 +236,7 @@ function addEventHandlers() {
   });
 
   // Navigate to other dates (Date Input)
+  // TODO: there may be a better option than "blur" which is more mobile-friendly and allows the user to click 'enter' on web
   const dateInput = document.getElementById("specificDate");
   dateInput.addEventListener("blur", () => {
     const dateString = dateInput.value;
@@ -260,7 +259,6 @@ function addEventHandlers() {
       });
       toast.show();
 
-      // TODO Show "Copied!" feedback as Toast message or clipboard icon
       const element = e.target.closest("[data-copy]");
       element.style.opacity = "0.7";
 
